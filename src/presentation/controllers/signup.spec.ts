@@ -1,5 +1,4 @@
-import { InvalidParamsError } from '../errors/invalid-params-erros'
-import { MissingParamsError } from '../errors/missing-params-erros'
+import { InvalidParamsError, MissingParamsError } from '../errors'
 import { ServerError } from '../errors/server-error'
 import { EmailValidator } from '../protocols/email-validator'
 import { SignUpController } from './signup'
