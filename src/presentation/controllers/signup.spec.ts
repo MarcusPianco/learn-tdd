@@ -1,8 +1,13 @@
 import { SignUpController } from './signup'
+
+const mockSut = (): SignUpController => {
+  return new SignUpController()
+}
+
 describe('SignUp Controller', () => {
   test('Should return 400 is name not provide', () => {
     // System Under Test
-    const sut = new SignUpController()
+    const sut = mockSut()
     const httpRequest = {
       body: {
         email: 'm@m.com',
@@ -16,7 +21,7 @@ describe('SignUp Controller', () => {
   })
   test('Should return 400 is email not provide', () => {
     // System Under Test
-    const sut = new SignUpController()
+    const sut = mockSut()
     const httpRequest = {
       body: {
         name: 'any',
@@ -30,7 +35,7 @@ describe('SignUp Controller', () => {
   })
   test('Should return 400 is email not provide', () => {
     // System Under Test
-    const sut = new SignUpController()
+    const sut = mockSut()
     const httpRequest = {
       body: {
         name: 'any',
@@ -44,7 +49,7 @@ describe('SignUp Controller', () => {
   })
   test('Should return 400 is email not provide', () => {
     // System Under Test
-    const sut = new SignUpController()
+    const sut = mockSut()
     const httpRequest = {
       body: {
         name: 'any',
