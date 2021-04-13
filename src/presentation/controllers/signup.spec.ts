@@ -54,7 +54,7 @@ describe('SignUp Controller', () => {
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse.body).toEqual(new MissingParamsError('email'))
   })
-  test('Should return 400 is email not provide', () => {
+  test('Should return 400 is passowrd not provide', () => {
     // System Under Test
     const { sut } = makeSut()
     const httpRequest = {
@@ -68,7 +68,7 @@ describe('SignUp Controller', () => {
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse.body).toEqual(new MissingParamsError('password'))
   })
-  test('Should return 400 is email not provide', () => {
+  test('Should return 400 is confirmPassword not provide', () => {
     // System Under Test
     const { sut } = makeSut()
     const httpRequest = {
