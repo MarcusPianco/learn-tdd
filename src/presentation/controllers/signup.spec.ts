@@ -1,3 +1,5 @@
+import { AccountModel } from '@/domain/models/account'
+import { AddAccount, AddAccountModel } from '@/domain/usecases/add-account'
 import { InvalidParamsError, MissingParamsError } from '../errors'
 import { ServerError } from '../errors/server-error'
 import { EmailValidator } from '../protocols'
@@ -6,6 +8,7 @@ import { SignUpController } from './signup'
 interface SutTypes {
   sut: SignUpController
   emailValidatorStub: EmailValidator
+  addAccountStub: AddAccount
 }
 
 const makeEmailVallidator = (): EmailValidator => {
@@ -16,12 +19,28 @@ const makeEmailVallidator = (): EmailValidator => {
   }
   return new EmailValidatorStub()
 }
+const makeAddAccount = (): AddAccount => {
+  class AddAccountStub implements AddAccount {
+    add (account: AddAccountModel): AccountModel {
+      const fakeAccount = {
+        id: 'valid_id',
+        name: 'valid_name',
+        email: 'valid_email@email.com',
+        password: 'valid_password'
+      }
+      return fakeAccount
+    }
+  }
+  return new AddAccountStub()
+}
 const makeSut = (): SutTypes => {
   const emailValidatorStub = makeEmailVallidator()
-  const sut = new SignUpController(emailValidatorStub)
+  const addAccountStub = makeAddAccount()
+  const sut = new SignUpController(emailValidatorStub, addAccountStub)
   return {
     sut,
-    emailValidatorStub
+    emailValidatorStub,
+    addAccountStub
   }
 }
 
@@ -144,5 +163,24 @@ describe('SignUp Controller', () => {
     const httpResponse = sut.handle(httpRequest)
     expect(httpResponse.statusCode).toBe(500)
     expect(httpResponse.body).toEqual(new ServerError())
+  })
+  test('Should call addAccount with correct values', () => {
+    // System Under Test
+    const { sut,addAccountStub } = makeSut()
+    const addSpy = jest.spyOn(addAccountStub,'add')
+    const httpRequest = {
+      body: {
+        name: 'any',
+        email: 'any_email@gmail.com',
+        password: 'password',
+        confirmPassword: 'password'
+      }
+    }
+    sut.handle(httpRequest)
+    expect(addSpy).toHaveBeenCalledWith({
+      name: 'any',
+      email: 'any_email@gmail.com',
+      password: 'password'
+    })
   })
 })
