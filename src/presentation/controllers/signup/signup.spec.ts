@@ -99,7 +99,7 @@ describe('SignUp Controller', () => {
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse.body).toEqual(new MissingParamsError('confirmPassword'))
   })
-  test('Should return 400 is passowrdConfirmation fails not provide', async () => {
+  test('Should return 400 is passowrdConfirmation fails', async () => {
     // System Under Test
     const { sut } = makeSut()
     const httpRequest = {
@@ -199,7 +199,7 @@ describe('SignUp Controller', () => {
     expect(httpResponse.statusCode).toBe(500)
     expect(httpResponse.body).toEqual(new ServerError())
   })
-  test('Should return 200 is valid date provided', async () => {
+  test('Should return 200 is valid data provided', async () => {
     // System Under Test
     const { sut } = makeSut()
     const httpRequest = {
