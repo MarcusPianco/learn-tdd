@@ -2,7 +2,6 @@ module.exports = {
   roots: ['<rootDir>/src'],
   collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
   coverageDirectory: 'coverage',
-  coverageProvider: 'babel',
   testEnvironment: 'node',
   transform: {
     '.+\\.ts$': 'ts-jest'
@@ -10,5 +9,9 @@ module.exports = {
   moduleNameMapper: {
     '@/tests/(.*)': '<rootDir>/tests/$1',
     '@/(.*)': '<rootDir>/src/$1'
-  }
+  },
+  coveragePathIgnorePatterns: [
+    '<rootDir>/src/presentation/controllers/signup/signup-protocols.ts',
+    '<rootDir>/src/presentation/protocols'
+  ]
 }
