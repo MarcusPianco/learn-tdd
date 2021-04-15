@@ -22,4 +22,12 @@ describe('Name of the group', () => {
     const isValid = sut.isValid('valid_email@mail.com')
     expect(isValid).toBe(true)
   })
+
+  test('Sould call validator with correct data',() => {
+    const sut = new EmailValidatorAdapter()
+    const isEmailSpy = jest.spyOn(validator,'isEmail')
+
+    sut.isValid('any_email@mail.com')
+    expect(isEmailSpy).toHaveBeenCalledWith('any_email@mail.com')
+  })
 })
