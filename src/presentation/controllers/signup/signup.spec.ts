@@ -1,6 +1,6 @@
 import { InvalidParamsError, MissingParamsError } from '../../errors'
 import { ServerError } from '../../errors/server-error'
-import { AccountModel, AddAccount, AddAccountModel, EmailValidator } from './signup-protocols'
+import { AccountModel, AddAccount, AddAccountDto, EmailValidator } from './signup-protocols'
 import { SignUpController } from './signup'
 
 interface SutTypes {
@@ -19,7 +19,7 @@ const makeEmailVallidator = (): EmailValidator => {
 }
 const makeAddAccount = (): AddAccount => {
   class AddAccountStub implements AddAccount {
-    async add (account: AddAccountModel): Promise<AccountModel> {
+    async add (account: AddAccountDto): Promise<AccountModel> {
       const fakeAccount = {
         id: 'valid_id',
         name: 'valid_name',
