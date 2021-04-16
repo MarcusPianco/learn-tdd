@@ -2,7 +2,7 @@ import { Encrypter } from '@/data/protocols/Encrypter'
 import { AddAccount } from '@/domain/usecases/add-account'
 import { DbAddAccount } from './db-add-account'
 
-interface SutEncrypter{
+interface SutTypes{
   sut: AddAccount
   encryptStub: Encrypter
 }
@@ -17,7 +17,7 @@ const makeEncryptStub = (): Encrypter => {
   return encryptStub
 }
 
-const makeSut = (): SutEncrypter => {
+const makeSut = (): SutTypes => {
   const encryptStub = makeEncryptStub()
   const sut = new DbAddAccount(encryptStub)
   return {
