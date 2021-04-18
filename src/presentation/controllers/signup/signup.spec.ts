@@ -71,7 +71,7 @@ describe('SignUp Controller', () => {
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse.body).toEqual(new MissingParamsError('email'))
   })
-  test('Should return 400 is passowrd not provide', async () => {
+  test('Should return 400 is password not provide', async () => {
     // System Under Test
     const { sut } = makeSut()
     const httpRequest = {
@@ -184,7 +184,7 @@ describe('SignUp Controller', () => {
   test('Should return 500 if AddAccount throws', async () => {
     const { sut,addAccountStub } = makeSut()
     jest.spyOn(addAccountStub,'add').mockImplementationOnce(async () => {
-      return new Promise((resolve, reject) => reject(new Error()))
+      return Promise.reject(new Error())
     })
 
     const httpRequest = {
