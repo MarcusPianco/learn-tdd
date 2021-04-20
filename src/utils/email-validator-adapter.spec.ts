@@ -17,7 +17,7 @@ describe('Name of the group', () => {
     const isValid = sut.isValid('invalid_email@mail.com')
     expect(isValid).toBe(false)
   })
-  test('Sould return true if validator lib returs false',() => {
+  test('Sould return true if validator lib returs true',() => {
     const sut = makeSut()
 
     const isValid = sut.isValid('valid_email@mail.com')
