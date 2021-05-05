@@ -6,7 +6,6 @@ describe('Account Mongo Repository',() => {
     await MongoHelper.connect(process.env.MONGO_URL)
   })
   afterAll(async () => {
-    console.log('entrou no disconect')
     await MongoHelper.disconnect()
   })
   beforeEach(async () => {
