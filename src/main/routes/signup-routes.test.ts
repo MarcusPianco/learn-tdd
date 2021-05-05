@@ -19,9 +19,9 @@ describe('Signup Routes',() => {
       .post('/api/signup')
       .send({
         name: 'Marcus',
-        email: 'm@m.com',
-        password: '123',
-        passwordConfirmation: '123'
+        email: 'marcus.ufal@gmail.com',
+        password: '123456',
+        confirmPassword: '123456'
       })
       .expect(200)
   })
