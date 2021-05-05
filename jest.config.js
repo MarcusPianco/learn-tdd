@@ -1,6 +1,6 @@
 module.exports = {
   roots: ['<rootDir>/src'],
-  collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
+  collectCoverageFrom: ['<rootDir>/src/**/*.ts', '!<rootDir>/src/main/**'],
   coverageDirectory: 'coverage',
   testEnvironment: 'node',
   transform: {
@@ -13,10 +13,7 @@ module.exports = {
   },
   coveragePathIgnorePatterns: [
     '<rootDir>/src/presentation/controllers/signup/signup-protocols.ts',
-    '<rootDir>/src/presentation/protocols',
-    '<rootDir>/src/main/server.ts',
-    '<rootDir>/src/main/config/env.ts'
-
+    '<rootDir>/src/presentation/protocols'
   ]
 
 }
