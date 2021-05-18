@@ -2,6 +2,7 @@ import { InvalidParamsError, MissingParamsError } from '../../errors'
 import { ServerError } from '../../errors/server-error'
 import { AccountModel, AddAccount, AddAccountDto, EmailValidator } from './signup-protocols'
 import { SignUpController } from './signup'
+import { ok } from '@/presentation/helpers/http-helper'
 
 interface SutTypes {
   sut: SignUpController
@@ -211,12 +212,11 @@ describe('SignUp Controller', () => {
       }
     }
     const httpResponse = await sut.handle(httpRequest)
-    expect(httpResponse.statusCode).toBe(200)
-    expect(httpResponse.body).toEqual({
+    expect(httpResponse).toEqual(ok({
       id: 'valid_id',
       name: 'valid_name',
       email: 'valid_email@email.com',
       password: 'valid_password'
-    })
+    }))
   })
 })
